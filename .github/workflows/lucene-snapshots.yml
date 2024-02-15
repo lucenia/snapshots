@@ -66,7 +66,7 @@ jobs:
 
       - name: Publish lucene snapshot to github packages
         env:
-          USERNAME: ${{github.actor}}
-          ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          USERNAME: ${{ github.actor }}
+          ACCESS_TOKEN: ${{ github.token }}
         run: |
-          bash lucenia-build/scripts/gradle/publish-to-github-packages.sh ~/.m2/repository/ lucenia-bot snapshots github
+          bash lucenia-build/scripts/gradle/publish-to-github-packages.sh ~/.m2/repository/  snapshots github
