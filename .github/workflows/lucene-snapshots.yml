@@ -31,6 +31,18 @@ jobs:
       - name: Cat settings.xml
         run: cat ~/.m2/settings.xml
 
+      - name: Checkout build repo
+        uses: actions/checkout@v4
+        with:
+          repository: lucenia/build
+          ref: main
+          path: lucenia-build
+
+      - name: Copy settings.xml
+        run: |
+          cp lucenia-build/maven/settings.xml ~/.m2/
+          cat ~/.m2/settings.xml
+
       - name: Checkout Lucene
         uses: actions/checkout@v4
         with:
@@ -51,18 +63,6 @@ jobs:
       - name: Publish Lucene to local maven repo.
         working-directory: ./lucene
         run: ./gradlew publishJarsPublicationToMavenLocal -Pversion.suffix=snapshot-${{ steps.version.outputs.REVISION }}
-
-      - name: Checkout build repo
-        uses: actions/checkout@v4
-        with:
-          repository: lucenia/build
-          ref: main
-          path: lucenia-build
-
-      - name: Copy settings.xml
-        run: |
-          # cp lucenia-build/maven/settings.xml ~/.m2/
-          ls ~/.m2
 
       - name: Publish lucene snapshot to github packages
         env:
