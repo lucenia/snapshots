@@ -28,9 +28,6 @@ jobs:
           java-version: '17'
           distribution: 'adopt'
 
-      - name: Cat settings.xml
-        run: cat ~/.m2/settings.xml
-
       - name: Checkout build repo
         uses: actions/checkout@v4
         with:
@@ -41,7 +38,6 @@ jobs:
       - name: Copy settings.xml
         run: |
           cp lucenia-build/maven/settings.xml ~/.m2/
-          cat ~/.m2/settings.xml
 
       - name: Checkout Lucene
         uses: actions/checkout@v4
