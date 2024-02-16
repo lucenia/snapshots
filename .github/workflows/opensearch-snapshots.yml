@@ -42,7 +42,7 @@ jobs:
       - name: Checkout OpenSearch Core
         uses: actions/checkout@v4
         with:
-          repository: 'opensearch/opensearch-project'
+          repository: 'opensearch-project/opensearch'
           path: opensearch
           ref: ${{ github.event.inputs.ref }}
 
@@ -50,7 +50,7 @@ jobs:
         working-directory: ./opensearch
         run: ./gradlew publishToMavenLocal
 
-      - name: Publish lucene opensearch to github packages
+      - name: Publish OpenSearch to github packages
         env:
           USERNAME: ${{ secrets.SNAPSHOTS_USER }}
           ACCESS_TOKEN: ${{ secrets.SNAPSHOTS_TOKEN }}
